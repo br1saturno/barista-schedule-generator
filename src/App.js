@@ -15,7 +15,45 @@ function Modal({ isOpen, onClose, children }) {
 }
 
 function App() {
-  const [baristas, setBaristas] = useState([{ name: '', availability: {} }]);
+  const [baristas, setBaristas] = useState([
+    {
+      name: 'Alice',
+      availability: {
+        Monday: ['6:30am - 1pm', '1pm - 6:30pm'],
+        Tuesday: ['6:30am - 2pm', '2pm - 8:30pm'],
+        Wednesday: ['1pm - 6:30pm'],
+        Thursday: ['6:30am - 2pm', '2pm - 8:30pm'],
+        Friday: ['6:30am - 1pm', '1pm - 6:30pm'],
+        Saturday: ['7:30am - 2pm'],
+        Sunday: ['1pm - 6:30pm']
+      }
+    },
+    {
+      name: 'Bob',
+      availability: {
+        Monday: ['2pm - 8:30pm'],
+        Tuesday: ['6:30am - 1pm', '1pm - 6:30pm'],
+        Wednesday: ['6:30am - 2pm', '2pm - 8:30pm'],
+        Thursday: ['1pm - 6:30pm'],
+        Friday: ['6:30am - 2pm', '2pm - 8:30pm'],
+        Saturday: ['1pm - 6:30pm', '2pm - 8:30pm'],
+        Sunday: ['7:30am - 1pm']
+      }
+    },
+    {
+      name: 'Charlie',
+      availability: {
+        Monday: ['1pm - 6:30pm'],
+        Tuesday: ['2pm - 8:30pm'],
+        Wednesday: ['6:30am - 1pm', '1pm - 6:30pm'],
+        Thursday: ['6:30am - 2pm'],
+        Friday: ['2pm - 8:30pm'],
+        Saturday: ['7:30am - 2pm', '2pm - 8:30pm'],
+        Sunday: ['7:30am - 2pm', '2pm - 8:30pm']
+      }
+    }
+  ]);
+
   const [considerations, setConsiderations] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [generatedPrompt, setGeneratedPrompt] = useState('');
@@ -38,6 +76,11 @@ function App() {
 
   const addBarista = () => {
     setBaristas([...baristas, { name: '', availability: {} }]);
+  };
+
+  const removeBarista = (index) => {
+    const updatedBaristas = baristas.filter((_, i) => i !== index);
+    setBaristas(updatedBaristas);
   };
 
   const updateBarista = (index, field, value) => {
@@ -78,15 +121,18 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Nili's Barista Schedule Generator</h1>
+      <h1>Barista Schedule Generator</h1>
       {baristas.map((barista, index) => (
         <div key={index} className="barista-container">
-          <input
-            type="text"
-            value={barista.name}
-            onChange={(e) => updateBarista(index, 'name', e.target.value)}
-            placeholder="Barista Name"
-          />
+          <div className="barista-header">
+            <input
+              type="text"
+              value={barista.name}
+              onChange={(e) => updateBarista(index, 'name', e.target.value)}
+              placeholder="Barista Name"
+            />
+            <button onClick={() => removeBarista(index)} className="remove-button">Remove Barista</button>
+          </div>
           <div className="availability-grid">
             {daysOfWeek.map(day => (
               <div key={day} className="day-column">
@@ -105,15 +151,13 @@ function App() {
           </div>
         </div>
       ))}
+      <button onClick={addBarista}>Add Barista</button>
       <textarea
         value={considerations}
         onChange={(e) => setConsiderations(e.target.value)}
         placeholder="Additional considerations..."
       />
-      <div className="button-container">  
-        <button onClick={addBarista}>Add Barista</button>
-        <button onClick={generatePrompt}>Generate Prompt</button>
-      </div>
+      <button onClick={generatePrompt}>Generate Prompt</button>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2>Generated Prompt</h2>
