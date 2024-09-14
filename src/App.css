@@ -1,6 +1,11 @@
+body {
+  font-family: 'Red Hat Display', sans-serif;
+}
+
 .App {
   text-align: center;
   padding: 20px;
+  background-color: #f0f0f0;
 }
 
 .header {
@@ -35,15 +40,14 @@
 
 .barista-container {
   margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 10px;
+  border: 1px solid #c7c7c7;
+  padding: 20px;
   border-radius: 8px;
 }
 
 .availability-grid {
   display: flex;
   justify-content: space-around;
-  margin-top: 10px;
   flex-wrap: wrap;
 }
 
@@ -57,7 +61,7 @@
   padding: 5px;
   margin: 2px;
   cursor: pointer;
-  border: 1px solid #ddd;
+  border: 1px solid #c7c7c7;
   border-radius: 4px;
   font-size: 0.8em;
 }
@@ -97,7 +101,7 @@ button {
   border-radius: 4px;
 }
 
-h3 {
+h3, h4 {
   margin-bottom: 5px;
 }
 
@@ -144,7 +148,6 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .remove-button {

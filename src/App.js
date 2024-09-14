@@ -172,7 +172,7 @@ function App() {
           <div className="availability-grid">
             {daysOfWeek.map(day => (
               <div key={day} className="day-column">
-                <h3>{day}</h3>
+                <h4>{day}</h4>
                 {(day === 'Saturday' || day === 'Sunday' ? shifts.weekend : shifts.weekday).map(shift => (
                   <div
                     key={shift}
