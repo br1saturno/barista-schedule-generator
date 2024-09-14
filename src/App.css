@@ -134,3 +134,27 @@ h3 {
 .remove-button:hover {
   background-color: #d32f2f;
 }
+
+.add-removed-barista {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.add-removed-barista:hover {
+  background-color: #1976D2;
+}
+
+.removed-baristas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}

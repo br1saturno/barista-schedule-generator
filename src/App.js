@@ -57,6 +57,7 @@ function App() {
   const [considerations, setConsiderations] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [generatedPrompt, setGeneratedPrompt] = useState('');
+  const [removedBaristas, setRemovedBaristas] = useState([]);
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const shifts = {
@@ -78,9 +79,20 @@ function App() {
     setBaristas([...baristas, { name: '', availability: {} }]);
   };
 
+  const handleRemoveBarista = (indexToRemove) => {
+    const baristaToRemove = baristas[indexToRemove];
+    setBaristas(baristas.filter((_, index) => index !== indexToRemove));
+    setRemovedBaristas([...removedBaristas, baristaToRemove]);
+  };
+
+  const handleAddRemovedBarista = (indexToAdd) => {
+    const baristaToAdd = removedBaristas[indexToAdd];
+    setBaristas([...baristas, baristaToAdd]);
+    setRemovedBaristas(removedBaristas.filter((_, index) => index !== indexToAdd));
+  };
+
   const removeBarista = (index) => {
-    const updatedBaristas = baristas.filter((_, i) => i !== index);
-    setBaristas(updatedBaristas);
+    handleRemoveBarista(index);
   };
 
   const updateBarista = (index, field, value) => {
@@ -122,6 +134,19 @@ function App() {
   return (
     <div className="App">
       <h1>Barista Schedule Generator</h1>
+      {removedBaristas.length > 0 && (
+        <div className="removed-baristas">
+          {removedBaristas.map((barista, index) => (
+            <button 
+              key={index}
+              className="add-removed-barista" 
+              onClick={() => handleAddRemovedBarista(index)}
+            >
+              Add {barista.name}
+            </button>
+          ))}
+        </div>
+      )}
       {baristas.map((barista, index) => (
         <div key={index} className="barista-container">
           <div className="barista-header">
@@ -151,13 +176,16 @@ function App() {
           </div>
         </div>
       ))}
-      <button onClick={addBarista}>Add Barista</button>
+      
       <textarea
         value={considerations}
         onChange={(e) => setConsiderations(e.target.value)}
         placeholder="Additional considerations..."
       />
-      <button onClick={generatePrompt}>Generate Prompt</button>
+      <div className="button-container">
+        <button onClick={addBarista}>Add Barista</button>
+        <button onClick={generatePrompt}>Generate Prompt</button>
+      </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2>Generated Prompt</h2>
