@@ -3,6 +3,36 @@
   padding: 20px;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.title-container h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.title-container span {
+  font-size: 14px;
+  color: #666;
+}
+
 .barista-container {
   margin-bottom: 20px;
   border: 1px solid #ddd;

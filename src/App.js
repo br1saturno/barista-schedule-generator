@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import logo from '../src/assets/images/brand/logo.png'; 
 
 function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
@@ -137,7 +138,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Barista Schedule Generator</h1>
+      <div className="header">
+        <img src={logo} alt="BaristaFlow Logo" className="logo" />
+        <div className="title-container">
+          <h1>BaristaFlow</h1>
+          <span>Barista Schedule Generator</span>
+        </div>
+      </div>
       {removedBaristas.length > 0 && (
         <div className="removed-baristas">
           {removedBaristas.map((barista, index) => (
