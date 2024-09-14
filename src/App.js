@@ -124,8 +124,12 @@ function App() {
         prompt += `  ${day}: ${availableShifts.join(', ')}\n`;
       });
     });
-    prompt += "\nAdditional considerations:\n";
-    prompt += considerations;
+  
+    if (considerations.trim()) {
+      prompt += "\nAdditional considerations:\n";
+      prompt += considerations;
+    }
+  
     prompt += "\n\nPlease create a weekly schedule that optimizes coverage and considers the provided information.";
     setGeneratedPrompt(prompt);
     setIsModalOpen(true);
