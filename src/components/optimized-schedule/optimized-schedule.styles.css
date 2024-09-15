@@ -1,0 +1,14 @@
+.optimized-schedule {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .day-schedule {
+    margin-bottom: 15px;
+  }
+  
+  .shift-schedule {
+    margin-left: 15px;
+  }

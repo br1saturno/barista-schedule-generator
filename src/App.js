@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { optimizeShifts } from './utils/optimize-shifts.utils';
+import OptimizedSchedule from './components/optimized-schedule/optimized-schedule.component';
 import './App.css';
 import logo from '../src/assets/images/brand/logo.png'; 
 
@@ -72,6 +74,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [generatedPrompt, setGeneratedPrompt] = useState('');
   const [removedBaristas, setRemovedBaristas] = useState([]);
+  const [optimizedSchedule, setOptimizedSchedule] = useState(null);
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const shifts = {
@@ -157,6 +160,38 @@ function App() {
     setIsModalOpen(true);
   };
 
+  const toggleAllShifts = (baristaIndex) => {
+    const updatedBaristas = [...baristas];
+    const barista = updatedBaristas[baristaIndex];
+    
+    // Check if all shifts are currently selected
+    const allSelected = daysOfWeek.every(day => 
+      (day === 'Saturday' || day === 'Sunday' ? shifts.weekend : shifts.weekday)
+        .every(shift => barista.availability[day]?.includes(shift))
+    );
+  
+    // Toggle all shifts
+    daysOfWeek.forEach(day => {
+      const dayShifts = day === 'Saturday' || day === 'Sunday' ? shifts.weekend : shifts.weekday;
+      if (!barista.availability[day]) {
+        barista.availability[day] = [];
+      }
+      dayShifts.forEach(shift => {
+        if (allSelected) {
+          // Remove all shifts
+          barista.availability[day] = [];
+        } else {
+          // Add all shifts
+          if (!barista.availability[day].includes(shift)) {
+            barista.availability[day].push(shift);
+          }
+        }
+      });
+    });
+  
+    setBaristas(updatedBaristas);
+  };
+
   return (
     <div className="App">
       <div className="header">
@@ -191,6 +226,9 @@ function App() {
             />
             <h4>Select {barista.name}'s availability</h4>
             <button onClick={() => removeBarista(index)} className="remove-button">Remove Barista</button>
+            <button onClick={() => toggleAllShifts(index)} className="select-all-button">
+              Select All Shifts
+            </button>
           </div>
           <div className="availability-grid">
             {daysOfWeek.map(day => (
@@ -219,12 +257,14 @@ function App() {
       <div className="button-container">
         <button onClick={addBarista}>Add Barista</button>
         <button onClick={generatePrompt}>Generate Prompt</button>
+        <button onClick={() => setOptimizedSchedule(optimizeShifts(baristas, daysOfWeek, shifts))}>Optimize Shifts</button>
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2>Generated Prompt</h2>
-        <pre>{generatedPrompt}</pre>
+        <pre>{generatedPrompt}</pre>        
       </Modal>
+      {optimizedSchedule && <OptimizedSchedule schedule={optimizedSchedule} />}
     </div>
   );
 }
