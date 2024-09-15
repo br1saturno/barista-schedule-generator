@@ -183,6 +183,7 @@ function App() {
         <div key={index} className="barista-container">
           <div className="barista-header">
             <input
+              className="barista-name"
               type="text"
               value={barista.name}
               onChange={(e) => updateBarista(index, 'name', e.target.value)}

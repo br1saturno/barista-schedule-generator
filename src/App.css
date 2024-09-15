@@ -71,6 +71,11 @@ body {
   color: white;
 }
 
+.barista-name {
+  font-weight: bold;
+  width: 80px;
+}
+
 input, textarea, button {
   margin: 10px;
   padding: 5px;
