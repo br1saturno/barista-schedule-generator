@@ -5,11 +5,24 @@ import logo from '../src/assets/images/brand/logo.png';
 function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
+  const copyToClipboard = () => {
+    const promptText = document.querySelector('.modal-content pre').textContent;
+    navigator.clipboard.writeText(promptText).then(() => {
+      alert('Prompt copied to clipboard!');
+    }, (err) => {
+      console.error('Could not copy text: ', err);
+    });
+  };
+
   return (
     <div className="modal-overlay">
+      <button className="modal-close" onClick={onClose}>&times;</button>
       <div className="modal-content">
         {children}
-        <button onClick={onClose}>Close</button>
+        <div className="modal-actions">
+            <button onClick={copyToClipboard}>Copy to Clipboard</button>
+            <button onClick={onClose}>Close</button>
+        </div>
       </div>
     </div>
   );
@@ -118,20 +131,28 @@ function App() {
 
   const generatePrompt = () => {
     let prompt = "Generate a barista schedule for a coffee shop with the following information:\n\n";
-    prompt += "Baristas and their availability:\n";
+  
+    prompt += "Available shifts:\n";
+    prompt += "Weekdays (Monday to Friday):\n";
+    shifts.weekday.forEach(shift => prompt += `  ${shift}\n`);
+    prompt += "Weekends (Saturday and Sunday):\n";
+    shifts.weekend.forEach(shift => prompt += `  ${shift}\n`);
+  
+    prompt += "\nBaristas and their availability:\n";
     baristas.forEach(barista => {
       prompt += `${barista.name}:\n`;
       Object.entries(barista.availability).forEach(([day, availableShifts]) => {
         prompt += `  ${day}: ${availableShifts.join(', ')}\n`;
       });
+      prompt += "\n";
     });
-  
+
     if (considerations.trim()) {
-      prompt += "\nAdditional considerations:\n";
-      prompt += considerations;
+      prompt += "Additional considerations:\n";
+      prompt += considerations + "\n";
     }
-  
-    prompt += "\n\nPlease create a weekly schedule that optimizes coverage and considers the provided information.";
+
+    prompt += "\nPlease create a weekly schedule that optimizes coverage and considers the provided information.";
     setGeneratedPrompt(prompt);
     setIsModalOpen(true);
   };
