@@ -188,7 +188,7 @@ function App() {
               onChange={(e) => updateBarista(index, 'name', e.target.value)}
               placeholder="Barista Name"
             />
-            <h3>Select {barista.name}'s availability</h3>
+            <h4>Select {barista.name}'s availability</h4>
             <button onClick={() => removeBarista(index)} className="remove-button">Remove Barista</button>
           </div>
           <div className="availability-grid">
