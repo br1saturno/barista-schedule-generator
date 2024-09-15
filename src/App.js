@@ -18,7 +18,7 @@ function Modal({ isOpen, onClose, children }) {
 function App() {
   const [baristas, setBaristas] = useState([
     {
-      name: 'Alice',
+      name: 'Giorgio',
       availability: {
         Monday: ['6:30am - 1pm', '1pm - 6:30pm'],
         Tuesday: ['6:30am - 2pm', '2pm - 8:30pm'],
@@ -30,7 +30,7 @@ function App() {
       }
     },
     {
-      name: 'Bob',
+      name: 'Jelisa',
       availability: {
         Monday: ['2pm - 8:30pm'],
         Tuesday: ['6:30am - 1pm', '1pm - 6:30pm'],
@@ -42,7 +42,7 @@ function App() {
       }
     },
     {
-      name: 'Charlie',
+      name: 'Paula',
       availability: {
         Monday: ['1pm - 6:30pm'],
         Tuesday: ['2pm - 8:30pm'],
