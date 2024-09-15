@@ -217,18 +217,22 @@ function App() {
       {baristas.map((barista, index) => (
         <div key={index} className="barista-container">
           <div className="barista-header">
-            <input
-              className="barista-name"
+            <div className="barista-title-container">
+              <h4>Select {barista.name}'s availability</h4>
+            </div>
+            <div className="barista-actions-container">
+              <input
+                className="barista-name"
               type="text"
               value={barista.name}
               onChange={(e) => updateBarista(index, 'name', e.target.value)}
               placeholder="Barista Name"
             />
-            <h4>Select {barista.name}'s availability</h4>
-            <button onClick={() => removeBarista(index)} className="remove-button">Remove Barista</button>
             <button onClick={() => toggleAllShifts(index)} className="select-all-button">
               Select All Shifts
             </button>
+            <button onClick={() => removeBarista(index)} className="remove-button">Remove Barista</button>
+            </div>
           </div>
           <div className="availability-grid">
             {daysOfWeek.map(day => (
@@ -264,7 +268,9 @@ function App() {
         <h2>Generated Prompt</h2>
         <pre>{generatedPrompt}</pre>        
       </Modal>
-      {optimizedSchedule && <OptimizedSchedule schedule={optimizedSchedule} />}
+      <div className="optimized-schedule-container">
+        {optimizedSchedule && <OptimizedSchedule schedule={optimizedSchedule} />}
+      </div>
     </div>
   );
 }
