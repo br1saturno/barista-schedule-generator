@@ -4,14 +4,25 @@ body {
 
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   background-color: #f0f0f0;
 }
 
 .header {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-around;
   margin-bottom: 20px;
+  width: 80%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
@@ -39,6 +50,8 @@ body {
 }
 
 .barista-container {
+  width: 60%;
+  background-color: #FFF;
   margin-bottom: 20px;
   border: 1px solid #c7c7c7;
   padding: 20px;
@@ -47,7 +60,7 @@ body {
 
 .availability-grid {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -83,7 +96,7 @@ input, textarea, button {
 }
 
 textarea {
-  width: 80%;
+  width: 60%;
   height: 100px;
 }
 
@@ -242,4 +255,50 @@ h3, h4 {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+
+.toggle-grid-button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.toggle-grid-button:hover {
+    background-color: #1976D2;
+}
+
+.barista-constraints {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.barista-constraints-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.barista-constraints label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.barista-constraints input[type="number"] {
+  color: #000;
+  width: 50px;
+  margin-right: 10px;
 }

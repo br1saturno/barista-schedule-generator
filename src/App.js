@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+
 import { optimizeShifts } from './utils/optimize-shifts.utils';
 import OptimizedSchedule from './components/optimized-schedule/optimized-schedule.component';
 import './App.css';
@@ -33,39 +36,111 @@ function Modal({ isOpen, onClose, children }) {
 function App() {
   const [baristas, setBaristas] = useState([
     {
-      name: 'Giorgio',
+      name: 'Sheelagh Darling Pletsch',
       availability: {
-        Monday: ['6:30am - 1pm', '1pm - 6:30pm'],
-        Tuesday: ['6:30am - 2pm', '2pm - 8:30pm'],
-        Wednesday: ['1pm - 6:30pm'],
-        Thursday: ['6:30am - 2pm', '2pm - 8:30pm'],
-        Friday: ['6:30am - 1pm', '1pm - 6:30pm'],
-        Saturday: ['7:30am - 2pm'],
-        Sunday: ['1pm - 6:30pm']
+        Monday: [],
+        Tuesday: [],
+        Wednesday: [],
+        Thursday: [],
+        Friday: [],
+        Saturday: [],
+        Sunday: []
       }
     },
     {
-      name: 'Jelisa',
+      name: 'Paula Echeverri',
       availability: {
-        Monday: ['2pm - 8:30pm'],
-        Tuesday: ['6:30am - 1pm', '1pm - 6:30pm'],
-        Wednesday: ['6:30am - 2pm', '2pm - 8:30pm'],
-        Thursday: ['1pm - 6:30pm'],
-        Friday: ['6:30am - 2pm', '2pm - 8:30pm'],
-        Saturday: ['1pm - 6:30pm', '2pm - 8:30pm'],
-        Sunday: ['7:30am - 1pm']
+        Monday: ['6:30am - 1pm',],
+        Tuesday: ['1pm - 6:30pm', '2pm - 8:30pm'],
+        Wednesday: ['1pm - 6:30pm', '2pm - 8:30pm'],
+        Thursday: ['1pm - 6:30pm', '2pm - 8:30pm'],
+        Friday: [],
+        Saturday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Sunday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm']
       }
     },
     {
-      name: 'Paula',
+      name: 'Giorgio Saturno',
       availability: {
-        Monday: ['1pm - 6:30pm'],
+        Monday: ['6:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Tuesday: ['6:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Wednesday: ['6:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Thursday: ['6:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Friday: ['6:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Saturday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Sunday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm']
+      }
+    },
+    {
+      name: 'Paul Rome',
+      availability: {
+        Monday: [],
+        Tuesday: ['6:30am - 1pm', ],
+        Wednesday: [],
+        Thursday: [],
+        Friday: [],
+        Saturday: [],
+        Sunday: []
+      }
+    },
+    {
+      name: 'Jelisa Palenque',
+      availability: {
+        Monday: ['6:30am - 1pm', '1pm - 2pm'],
+        Tuesday: ['6:30am - 1pm', '1pm - 2pm'],
+        Wednesday: ['6:30am - 1pm', '1pm - 2pm'],
+        Thursday: ['6:30am - 1pm', '1pm - 2pm'],
+        Friday: [],
+        Saturday: [],
+        Sunday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm']
+      }
+    },
+    {
+      name: 'Latoya Edwards',
+      availability: {
+        Monday: [],
+        Tuesday: ['6:30am - 1pm', '6:30am - 2pm',],
+        Wednesday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Thursday: [],
+        Friday: ['6:30am - 1pm', '6:30am - 2pm',],
+        Saturday: ['6:30am - 1pm', '6:30am - 2pm',],
+        Sunday: []
+      }
+    },
+    {
+      name: 'Tom Perkins',
+      availability: {
+        Monday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Tuesday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Wednesday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Thursday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Friday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Saturday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Sunday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+      }
+    },
+    {
+      name: 'Lauren Higgins',
+      availability: {
+        Monday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Tuesday: ['7:30am - 1pm', '7:30am - 2pm',],
+        Wednesday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Thursday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Friday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Saturday: ['7:30am - 1pm', '7:30am - 2pm',],
+        Sunday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+      }
+    },
+    {
+      name: 'Brian Snyder',
+      availability: {
+        Monday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
         Tuesday: ['2pm - 8:30pm'],
-        Wednesday: ['6:30am - 1pm', '1pm - 6:30pm'],
-        Thursday: ['6:30am - 2pm'],
-        Friday: ['2pm - 8:30pm'],
-        Saturday: ['7:30am - 2pm', '2pm - 8:30pm'],
-        Sunday: ['7:30am - 2pm', '2pm - 8:30pm']
+        Wednesday: [],
+        Thursday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Friday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Saturday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
+        Sunday: ['7:30am - 1pm', '7:30am - 2pm', '1pm - 6:30pm', '2pm - 8:30pm'],
       }
     }
   ]);
@@ -75,6 +150,7 @@ function App() {
   const [generatedPrompt, setGeneratedPrompt] = useState('');
   const [removedBaristas, setRemovedBaristas] = useState([]);
   const [optimizedSchedule, setOptimizedSchedule] = useState(null);
+  const [visibleGrids, setVisibleGrids] = useState({});
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const shifts = {
@@ -132,6 +208,13 @@ function App() {
     setBaristas(updatedBaristas);
   };
 
+  const toggleAvailabilityGrid = (index) => {
+    setVisibleGrids(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
   const generatePrompt = () => {
     let prompt = "Generate a barista schedule for a coffee shop with the following information:\n\n";
   
@@ -147,13 +230,25 @@ function App() {
       Object.entries(barista.availability).forEach(([day, availableShifts]) => {
         prompt += `  ${day}: ${availableShifts.join(', ')}\n`;
       });
+      if (barista.mustHave5Shifts) {
+        prompt += `  Constraint: Must have exactly 5 shifts per week\n`;
+      } else if (barista.onlyHaveFixedShifts && barista.fixedShifts) {
+        prompt += `  Constraint: Can only have ${barista.fixedShifts} shifts per week\n`;
+      }
+
       prompt += "\n";
     });
 
     if (considerations.trim()) {
       prompt += "Additional considerations:\n";
-      prompt += considerations + "\n";
+      prompt += considerations + "\n\n";
     }
+
+    prompt += "General constraints:\n";
+    prompt += "- Each shift should have exactly one barista assigned\n";
+    prompt += "- No barista should work more than one shift per day\n";
+    prompt += "- Try to distribute opening shifts (first shift of the day) evenly among baristas\n";
+    prompt += "- Ensure a fair distribution of shifts among baristas, considering their individual constraints\n\n";
 
     prompt += "\nPlease create a weekly schedule that optimizes coverage and considers the provided information.";
     setGeneratedPrompt(prompt);
@@ -192,14 +287,43 @@ function App() {
     setBaristas(updatedBaristas);
   };
 
+  const updateBaristaConstraint = (index, constraint, value) => {
+    const updatedBaristas = [...baristas];
+    if (constraint === 'fixedShifts') {
+      // Convert value to number and ensure it's within range
+      const numValue = Math.min(Math.max(parseInt(value) || 0, 1), 7);
+      updatedBaristas[index].fixedShifts = numValue;
+      // Deactivate other constraints
+      updatedBaristas[index].mustHave5Shifts = false;
+      // Activate the corresponding constraint
+      updatedBaristas[index].onlyHaveFixedShifts = numValue > 0;
+    } else if (constraint === 'mustHave5Shifts') {
+      updatedBaristas[index].mustHave5Shifts = value;
+      // If activating mustHave5Shifts, deactivate others
+      if (value) {
+        updatedBaristas[index].fixedShifts = 0;
+        updatedBaristas[index].onlyHaveFixedShifts = false;
+      }
+    } else if (constraint === 'onlyHaveFixedShifts') {
+      updatedBaristas[index].onlyHaveFixedShifts = value;
+      if (!value) {
+        updatedBaristas[index].fixedShifts = 0;
+      }
+    }
+    setBaristas(updatedBaristas);
+  };
+
   return (
     <div className="App">
       <div className="header">
+        <div className="header-left">
         <img src={logo} alt="BaristaFlow Logo" className="logo" />
         <div className="title-container">
           <h1>BaristaFlow</h1>
           <span>Barista Schedule Generator</span>
         </div>
+        </div>
+        <button onClick={addBarista}>Add Barista</button>
       </div>
       {removedBaristas.length > 0 && (
         <div className="removed-baristas">
@@ -232,9 +356,43 @@ function App() {
               Select All Shifts
             </button>
             <button onClick={() => removeBarista(index)} className="remove-button">Remove Barista</button>
+            <button onClick={() => toggleAvailabilityGrid(index)} className="toggle-grid-button">
+              
+              <FontAwesomeIcon icon={visibleGrids[index] ? faChevronUp : faChevronDown} />
+              </button>
             </div>
           </div>
-          <div className="availability-grid">
+          <div className="barista-constraints">
+            <label>
+              <input
+                type="checkbox"
+                checked={barista.mustHave5Shifts || false}
+                onChange={(e) => updateBaristaConstraint(index, 'mustHave5Shifts', e.target.checked)}
+              />
+              Must have 5 shifts
+            </label>
+            <div className="barista-constraints-input">
+            <label>
+            or can only have
+            <input
+                type="number"
+                min="1"
+                max="7"
+                value={barista.fixedShifts || ''}
+                onChange={(e) => updateBaristaConstraint(index, 'fixedShifts', e.target.value)}
+              />
+              shifts
+              <input
+                type="checkbox"
+                checked={barista.onlyHaveFixedShifts || false}
+                onChange={(e) => updateBaristaConstraint(index, 'onlyHaveFixedShifts', e.target.checked)}
+              />
+              </label>
+            </div>
+          </div>
+
+          {visibleGrids[index] && (
+            <div className="availability-grid">
             {daysOfWeek.map(day => (
               <div key={day} className="day-column">
                 <h4>{day}</h4>
@@ -250,13 +408,14 @@ function App() {
               </div>
             ))}
           </div>
+          )}
         </div>
       ))}
       
       <textarea
         value={considerations}
         onChange={(e) => setConsiderations(e.target.value)}
-        placeholder="Additional considerations..."
+        placeholder="Additional considerations for prompt..."
       />
       <div className="button-container">
         <button onClick={addBarista}>Add Barista</button>

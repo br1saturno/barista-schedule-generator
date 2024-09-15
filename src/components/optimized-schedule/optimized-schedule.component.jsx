@@ -9,13 +9,11 @@ const OptimizedSchedule = ({ schedule }) => {
         <div className="schedule-container">
             {Object.entries(schedule).map(([day, shifts]) => (
                 <div key={day} className="day-schedule">
-                    <h4>{day}</h4>
-                    {Object.entries(shifts).map(([shift, baristas]) => (
+                <h4>{day}</h4>
+                {Object.entries(shifts).map(([shift, barista]) => (
                     <div key={shift} className="shift-schedule">
-                    <strong>{shift}:</strong> 
-                    {baristas.length === 2 ? baristas.join(', ') : 
-                    baristas.length === 1 ? `${baristas[0]} (Understaffed)` : 
-                            'Unstaffed'}
+                    <strong>{shift}: </strong> 
+                    {barista ? barista : 'Unstaffed'}
                     </div>
                 ))}
                 </div>
